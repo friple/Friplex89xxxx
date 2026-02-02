@@ -99,7 +99,7 @@ AutoGrabButton.MouseButton1Click:Connect(function()
 					local rootPart = character.HumanoidRootPart
 					
 					for _, item in pairs(workspace:GetChildren()) do
-						if item:IsA("BasePart") and (item.Position - rootPart.Position).magnitude < 5 then
+						if item:IsA("BasePart") and (item.Position - rootPart.Position).Magnitude < 5 then
 							-- Use pcall for fail-safe execution
 							pcall(function()
 								firetouchinterest(rootPart, item, 0) -- Touch start
