@@ -1,103 +1,209 @@
-# Roblox AI Panel
+# Roblox Brainrot Stealer - Enhanced AI Panel
 
-A visually appealing AI panel for Roblox games with Auto Grab functionality.
+An advanced, feature-rich AI panel for the Roblox "Steal a Brainrot" game mode with ESP, speed control, and intelligent auto-grab capabilities.
 
-## Features
+## 🎮 Features
 
-### 1. Auto Grab Functionality
-- Automatically interacts with nearby objects within a 5-stud radius
-- Real-time UI feedback showing "ON" or "OFF" state
-- Uses `firetouchinterest` mechanism to process BasePart objects
-- Fail-safe implementation with error handling
+### 1. ⚡ Enhanced Auto Grab
+- Automatically collects brainrot items from other players' bases
+- Simulates E button press for natural interaction
+- Multi-method collection system:
+  - ProximityPrompt triggering (primary method)
+  - ClickDetector activation
+  - Touch event simulation
+- 10-stud detection radius for reliable collection
+- Works on all interactable objects in the game
 
-### 2. Close Button
-- Hides the panel when clicked (doesn't destroy it)
-- Can be re-enabled by setting `ScreenGui.Enabled = true`
+### 2. 👁️ ESP/Wallhack System
+- Toggle-able ESP showing bases and items through walls
+- Displays real-time information:
+  - 🏠 Base type identification
+  - ⏱️ Timer countdowns
+  - 🟢 Open/🔴 Closed status for friend access
+- Visual highlighting with colored boxes:
+  - Green for accessible bases
+  - Red for restricted bases
+  - Gold for brainrot items
+- Auto-refreshing every second for performance
 
-### 3. Beautiful and Compact Design
-- Modern design with rounded corners
-- Gradient background for visual appeal
-- 300x200 pixel compact panel
-- Professional color scheme
+### 3. 🏃 Speed Control
+- Adjustable speed slider (16-30 WalkSpeed)
+- Real-time value display
+- Continuous application works even while holding brainrot
+- Smooth, draggable slider interface
+- Persists across respawns
 
-## Implementation Details
+### 4. 🎨 Beautiful Modern Design
+- Large 350×350px panel with room for all features
+- Stunning gradient backgrounds with glow effects
+- Rounded corners and modern aesthetics
+- Professional dark theme (blue/purple)
+- Smooth animations and transitions
+- Emoji icons for visual clarity
 
-### Panel Layout
-- **Main Frame**: 300x200 pixels, centered on screen
-- **Title**: "AI Panel Functions" at the top
-- **Auto Grab Button**: Toggle button with visual feedback
-- **Close Button**: Red button to hide the panel
+### 5. 🔧 Quality of Life
+- **Draggable Panel**: Click and drag to reposition
+- **Hotkey Support**: Press INSERT to toggle panel
+- **Smart Cleanup**: Automatically cleans up when closing
+- **Persistent**: Panel survives character respawns
+- **Safe**: All exploit functions wrapped in error protection
 
-### Design Elements
-- **Rounded Corners**: 12px radius on main frame, 8px on buttons
-- **Gradient Background**: 45° diagonal gradient from dark to darker gray
-- **Color Scheme**:
-  - Background: Dark gray (RGB 25, 25, 25)
-  - Auto Grab OFF: Blue (RGB 45, 140, 200)
-  - Auto Grab ON: Green (RGB 50, 200, 100)
-  - Close Button: Red (RGB 200, 50, 50)
-
-### Auto Grab Logic
-- Runs in the `RenderStepped` loop when enabled
-- Scans all direct children of Workspace
-- Interacts with objects that:
-  - Are BasePart instances (or descendants)
-  - Are within 5 studs of the player's HumanoidRootPart
-- Uses `pcall` to prevent error spam
-- Properly disconnects connection when toggled off
-
-### Fail-Safe Features
-- **No Duplicate Connections**: Previous connection is disconnected before creating a new one
-- **Error Protection**: `pcall` wraps `firetouchinterest` to prevent crashes
-- **Nil Checks**: Validates character and HumanoidRootPart exist before use
-- **Clean Disconnection**: Properly cleans up RenderStepped connection when disabled
-
-## Installation
+## 📦 Installation
 
 1. Copy the contents of `AI_Panel.lua`
-2. In Roblox Studio, insert a **LocalScript** in `StarterPlayer > StarterPlayerScripts`
+2. In Roblox Studio or executor, create a LocalScript
 3. Paste the code into the LocalScript
-4. Run the game to see the panel
+4. For Studio: Place in `StarterPlayer > StarterPlayerScripts`
+5. For executor: Run the script
+6. Press INSERT to toggle the panel
 
-## Usage
+## 🎯 Usage Guide
 
-1. **Enable Auto Grab**: Click the "Auto Grab: OFF" button to turn it on
-2. **Move Near Objects**: Walk within 5 studs of BaseParts in the Workspace
-3. **Disable Auto Grab**: Click the "Auto Grab: ON" button to turn it off
-4. **Close Panel**: Click the "Close" button to hide the panel
+### Getting Started
+1. Press **INSERT** key to open the panel
+2. Panel appears centered and can be dragged anywhere
+3. Toggle features on/off with buttons
 
-## Technical Requirements
+### Auto Grab Feature
+- **OFF State**: Button shows "⚡ Auto Grab: OFF" in gray
+- **ON State**: Button shows "⚡ Auto Grab: ON" in green
+- Automatically approaches and collects brainrot items
+- Works within 10 studs of your character
+- No need to press E manually!
 
-- Roblox LocalScript environment
-- PlayerGui access
-- RunService access for RenderStepped
-- (Optional) firetouchinterest function for full functionality
+### ESP Feature
+- **OFF State**: Button shows "👁️ Base ESP: OFF" in gray
+- **ON State**: Button shows "👁️ Base ESP: ON" in green
+- See all bases and items through walls
+- Color-coded status indicators
+- Automatic information updates
 
-## Notes
+### Speed Control
+- Drag the white slider button left or right
+- See real-time speed value (16-30)
+- Speed applies immediately
+- Works while holding items
+- Perfect for quick getaways!
 
-- The `firetouchinterest` function is typically only available in exploit environments
-- In standard Roblox Studio/Game, this function may not exist, but the script will still run without errors
-- The panel can be reopened programmatically by setting `game.Players.LocalPlayer.PlayerGui.AIPanelUI.Enabled = true`
+### Closing Panel
+- Click "❌ Close Panel" button to hide
+- Press INSERT anytime to reopen
+- All active features are safely disabled when closing
 
-## Code Structure
+## 🔑 Keybinds
+
+| Key | Action |
+|-----|--------|
+| **INSERT** | Toggle panel visibility |
+| **Left Mouse** | Drag panel / Click buttons / Move slider |
+
+## 🎨 UI Overview
 
 ```
-AI_Panel.lua
-├── UI Creation
-│   ├── ScreenGui
-│   ├── Frame (Main Panel)
-│   ├── AutoGrabButton
-│   ├── CloseButton
-│   └── StatusLabel
-├── Styling
-│   ├── Rounded Corners (UICorner)
-│   └── Gradient (UIGradient)
-└── Logic
-    ├── Auto Grab Toggle
-    ├── RenderStepped Loop
-    └── Close Panel Handler
+┌─────────────────────────────────┐
+│    🧠 BRAINROT STEALER 🧠       │
+├─────────────────────────────────┤
+│  ⚡ Auto Grab: OFF/ON            │
+│  👁️ Base ESP: OFF/ON            │
+│                                  │
+│  🏃 Speed Control         [16]  │
+│  ●─────────────────────────○    │
+│                                  │
+│       ❌ Close Panel            │
+└─────────────────────────────────┘
 ```
 
-## License
+## ⚙️ Technical Details
+
+### Auto Grab System
+- Scans all workspace descendants every frame
+- Prioritizes ProximityPrompts (E button simulation)
+- Falls back to ClickDetectors if needed
+- Uses touch events as final method
+- All methods protected with pcall
+
+### ESP Implementation
+- BillboardGui for text labels
+- Highlight objects for wall visibility
+- Searches for base Models with specific attributes
+- Color-codes based on accessibility
+- Updates every 1 second (60 FPS friendly)
+
+### Speed System
+- Modifies Humanoid.WalkSpeed directly
+- Heartbeat loop ensures consistency
+- Overrides game speed restrictions
+- Range: 16 (default) to 30 (fast)
+
+### UI Framework
+- Pure Lua implementation
+- No external dependencies
+- Frame-based layout system
+- Event-driven architecture
+- Memory-efficient design
+
+## 🛡️ Safety Features
+
+- **Error Protection**: All exploit functions wrapped in pcall
+- **Nil Checks**: Validates character and objects exist
+- **Connection Cleanup**: Prevents memory leaks
+- **Safe Defaults**: Panel starts with all features OFF
+- **Graceful Failures**: Script continues even if features fail
+
+## 🎮 Game Compatibility
+
+Designed specifically for **"Steal a Brainrot"** Roblox game mode:
+- Detects bases automatically
+- Finds brainrot items in workspace
+- Adapts to different base structures
+- Works with various game versions
+
+## 📊 Performance
+
+- **CPU Usage**: Low (optimized scan loops)
+- **Memory**: Minimal footprint
+- **Network**: No remote calls required
+- **FPS Impact**: Negligible with proper optimization
+
+## 🐛 Troubleshooting
+
+**Panel won't appear:**
+- Press INSERT key
+- Check if script executed successfully
+- Look for console message: "🧠 Brainrot Stealer loaded!"
+
+**Auto Grab not working:**
+- Make sure you're within 10 studs of items
+- Check if items have ProximityPrompt or ClickDetector
+- Some items may require specific game conditions
+
+**ESP not showing bases:**
+- Verify bases exist in workspace
+- Check if base Models have proper structure
+- Try toggling ESP off and on again
+
+**Speed not applying:**
+- Check if game has speed restrictions
+- Try adjusting slider again
+- Some games may override speed frequently
+
+## 📝 Notes
+
+- This script requires an executor that supports exploit functions
+- Functions used: `fireproximityprompt`, `fireclickdetector`, `firetouchinterest`
+- Works best in games without strong anti-cheat
+- For educational purposes only
+
+## 🔄 Version History
+
+- **v2.0** (Current): Full enhancement with ESP, speed, and multi-method grab
+- **v1.0**: Basic auto grab functionality
+
+## 📜 License
 
 This is a demonstration project for educational purposes.
+
+## 🙏 Credits
+
+Created for the "Steal a Brainrot" Roblox community
+Enhanced with advanced features and modern UI design
